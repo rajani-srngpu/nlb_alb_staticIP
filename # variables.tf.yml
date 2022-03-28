@@ -1,0 +1,22 @@
+# variables.tf
+variable "test_nlb_config" {
+  default = {
+    name            = "test-nlb"
+    internal        = "false"
+    environment     = "test"
+    subnet          = <subnet_id>
+    nlb_vpc_id      = <vpc_id>
+  }
+}variable "test_tg_config" {
+  default = {
+    name                              = "test-nlb-tg"
+    target_type                       = "alb"
+    health_check_protocol             = "HTTP"
+    tg_vpc_id                         = <tg_creation_vpc_id>
+    target_id1                        = <application_load_balancer_tg.arn>
+  }
+}variable "test_forwarding_config" {
+  default = {
+      80        =   "TCP"
+      443       =   "TCP" # and so on  }
+}
